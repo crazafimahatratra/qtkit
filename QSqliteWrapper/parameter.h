@@ -12,9 +12,6 @@ namespace QSqliteWrapper
         Parameter(QString k, QVariant v);
         QString key;
         QVariant value;
-
-        template<typename T>
-        T add(T a, T b);
     };
 }
 
