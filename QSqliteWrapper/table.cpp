@@ -21,9 +21,20 @@ Table *Table::select(QString columns)
     return this;
 }
 
-Table *Table::where(QString key, QVariant value)
+Table *Table::where(QString key, QVariant value, QString op)
 {
     m_whereClause.append(Parameter(key, value));
+    int i = m_whereClause.count() - 1;
+    QString clause = m_whereClause[i].key + QString(":where_%1").arg(i);
+    if(_whereClause.isEmpty()) {
+        _whereClause = clause;
+    } else {
+        if (start)
+            _whereClause += " " + clause;
+        else
+            _whereClause += " " + op +  " " + clause;
+    }
+    start = false;
     return this;
 }
 
@@ -36,6 +47,22 @@ Table *Table::order(QString orderby)
 Table *Table::join(QString table, QString condition, QString type)
 {
     m_joins.append(Join(table, condition, type));
+    return this;
+}
+
+Table *Table::startGroup(QString op)
+{
+    start = true;
+    if(_whereClause.isEmpty())
+        _whereClause = "(";
+    else
+        _whereClause += " " + op + " (";
+    return this;
+}
+
+Table *Table::endGroup()
+{
+    _whereClause += " )";
     return this;
 }
 
@@ -187,17 +214,10 @@ QString Table::joinClause()
 
 QString Table::whereClause()
 {
-    if(m_whereClause.isEmpty())
+    if(_whereClause.isEmpty())
         return "";
-    QStringList sql;
-    int index = 0;
-    for(int i = 0; i < m_whereClause.count(); i++)
-    {
-        sql << m_whereClause[i].key + QString(":where_%1").arg(index++);
-    }
-    if(sql.isEmpty())
-        return "";
-    return " WHERE " + sql.join(" AND ");
+    qDebug() << _whereClause;
+    return " WHERE " + _whereClause;
 }
 
 QString Table::orderClause()

@@ -27,9 +27,11 @@ namespace QSqliteWrapper
         virtual QList<Parameter> prepareParameters() = 0;
 
         Table *select(QString columns = "*");
-        Table *where(QString key, QVariant value);
+        Table *where(QString key, QVariant value, QString op="AND");
         Table *order(QString orderby);
         Table *join(QString table, QString condition, QString type="INNER");
+        Table *startGroup(QString op="AND");
+        Table *endGroup();
         QVariant insert();
         void update();
         void remove();
@@ -68,6 +70,7 @@ namespace QSqliteWrapper
         QList<Join> m_joins;
         QStringList m_orderClause;
         queryMode mode;
+        bool start = true;
 
         QString selectClause();
         QString fromClause();
@@ -77,6 +80,8 @@ namespace QSqliteWrapper
         QString insertClause();
         QString updateClause();
         QString deleteClause();
+
+        QString _whereClause = "";
     };
 
     template<class T>
