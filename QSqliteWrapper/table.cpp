@@ -44,6 +44,12 @@ Table *Table::order(QString orderby)
     return this;
 }
 
+Table *Table::groupBy(QString group)
+{
+    m_groupClause.append(group);
+    return this;
+}
+
 Table *Table::join(QString table, QString condition, QString type)
 {
     m_joins.append(Join(table, condition, type));
@@ -111,6 +117,7 @@ QString Table::sql()
                 + this->fromClause()
                 + this->joinClause()
                 + this->whereClause()
+                + this->groupClause()
                 + this->orderClause();
 
     if(this->mode == INSERT)
@@ -225,6 +232,13 @@ QString Table::orderClause()
     if(m_orderClause.isEmpty())
         return "";
     return " ORDER BY " + m_orderClause.join(", ");
+}
+
+QString Table::groupClause()
+{
+    if(m_groupClause.isEmpty())
+        return "";
+    return " GROUP BY " + m_groupClause.join(", ");
 }
 
 QString Table::insertClause()

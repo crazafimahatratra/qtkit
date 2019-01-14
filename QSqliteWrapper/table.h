@@ -29,6 +29,7 @@ namespace QSqliteWrapper
         Table *select(QString columns = "*");
         Table *where(QString key, QVariant value, QString op="AND");
         Table *order(QString orderby);
+        Table *groupBy(QString group);
         Table *join(QString table, QString condition, QString type="INNER");
         Table *startGroup(QString op="AND");
         Table *endGroup();
@@ -69,6 +70,7 @@ namespace QSqliteWrapper
         QList<Parameter> m_updateValues;
         QList<Join> m_joins;
         QStringList m_orderClause;
+        QStringList m_groupClause;
         queryMode mode;
         bool start = true;
 
@@ -77,6 +79,7 @@ namespace QSqliteWrapper
         QString joinClause();
         QString whereClause();
         QString orderClause();
+        QString groupClause();
         QString insertClause();
         QString updateClause();
         QString deleteClause();
