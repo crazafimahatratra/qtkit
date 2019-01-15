@@ -8,6 +8,7 @@ namespace QSqliteWrapper
     public:
         Backup();
         static void exportDb(QWidget *parent);
+        static void importDb(QWidget* parent, int exitCodeReboot);
     };
 }
 #endif // BACKUP_H
