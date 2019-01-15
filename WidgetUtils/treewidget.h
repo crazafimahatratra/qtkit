@@ -6,9 +6,12 @@
 namespace WidgetUtils {
     class TreeWidget
     {
+    private:
+        static int _filterTreeItems(QTreeWidgetItem *root, QString text);
     public:
         TreeWidget();
         static void resizeColumns(QTreeWidget *widget);
+        static void filterTreeItems(QTreeWidget *widget, QString text);
     };
 }
 
