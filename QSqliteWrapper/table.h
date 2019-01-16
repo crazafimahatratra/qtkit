@@ -12,35 +12,157 @@
 #include "parameter.h"
 #include "join.h"
 
-
+/**
+ * \package QSqliteWrapper holds wrapper objects to the qt sql library.
+ * @author Christophe RAZAFIMAHATRATRA
+ * @date 2019 January
+ */
 namespace QSqliteWrapper
 {
+    /**
+     * @brief The Table class represents an sql physical table
+     * @author Christophe RAZAFIMAHATRATRA
+     * @date 2019 January
+     */
     class Table
     {
     public:
+        /**
+         * @brief Table Constructor
+         * @param name is the name of the physical table
+         */
         Table(QString name);
         virtual ~Table();
+
+        /**
+         * @brief pkName is the name of primary key of the table
+         * @return primary key name
+         */
         virtual QString pkName() = 0;
+
+        /**
+         * @brief pkValue is the value of the primary key
+         * @return the value of the primary key
+         */
         virtual QVariant pkValue() = 0;
+
+        /**
+         * @brief setPkValue sets the value of primary key
+         */
         virtual void setPkValue(QVariant) = 0;
+
+        /**
+         * @brief fromRecord maps records to the members of the class
+         * @param record an QSqlRecord object
+         */
         virtual void fromRecord(QSqlRecord record) = 0;
+
+        /**
+         * @brief prepareParameters maps the members to the Parameter object
+         * @return
+         */
         virtual QList<Parameter> prepareParameters() = 0;
 
+        /**
+         * @brief select generates a select clause
+         * @param columns holds the columns to be selected
+         * @return the Table object back
+         */
         Table *select(QString columns = "*");
+
+        /**
+         * @brief where generates a where clause.
+         * @param key the column name (or a sql expression)
+         * @param value the value of the column
+         * @param op the operator. Can be `AND` or `OR`
+         * @return the Table object
+         */
         Table *where(QString key, QVariant value, QString op="AND");
+
+        /**
+         * @brief order generates an order by clause
+         * @param orderby the order clause
+         * @return the Table object
+         */
         Table *order(QString orderby);
+
+        /**
+         * @brief groupBy generates a group by clause
+         * @param group : the group by clause
+         * @return the Table object
+         */
         Table *groupBy(QString group);
+
+        /**
+         * @brief join Adds a join clause
+         * @param table the table name
+         * @param condition the condition
+         * @param type the join type @see Join
+         * @return the Table object
+         */
         Table *join(QString table, QString condition, QString type="INNER");
+
+        /**
+         * @brief startGroup starts a group for where condition
+         * @param op the operator to be used **AND** or **OR**
+         * @return the Table object
+         */
         Table *startGroup(QString op="AND");
+
+        /**
+         * @brief endGroup Ends the current group in a where clause
+         * @return the Table object
+         */
         Table *endGroup();
+
+        /**
+         * @brief insert Creates an insert statement
+         * @return the last inserted id
+         */
         QVariant insert();
+
+        /**
+         * @brief update Creates an update statement
+         */
         void update();
+
+        /**
+         * @brief remove Creates a delete statement
+         */
         void remove();
+
+        /**
+         * @brief exists Checks if a record already exists.
+         * It uses the value of Table::pkValue()
+         * @return
+         */
         bool exists();
 
+        /**
+         * @brief sql Generates the final sql to be executed
+         * @return the SQL statement
+         */
         QString sql();
+
+        /**
+         * @brief exec Executes the SQL returned by sql() statement
+         * @return
+         */
         QList<QSqlRecord> exec();
+
+        /**
+         * @brief exec Executes an arbitrary SQL statement
+         * @param sql : the SQL to be executed
+         * @return a list of QSqlRecord returned by the sql parameter (if any)
+         */
         QList<QSqlRecord> exec(QString sql);
+
+        /**
+         * @brief exec Executes an arbitrary SQL statement with parameters
+         * @param sql : the SQL to be executed
+         * @param parameters : some parameters
+         * @return a list of QSqlRecord returned by the sql parameter (if any)
+         */
         QList<QSqlRecord> exec(QString sql, QList<Parameter> parameters);
 
         QMap<QString, QVariant> boundValues;
