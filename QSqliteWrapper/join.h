@@ -19,7 +19,21 @@ namespace QSqliteWrapper
          */
         Join(QString table, QString cond, QString type = "INNER");
 
-        QString tablename, condition, type;
+        /**
+         * @brief the name of the table to be joint
+         *
+         */
+        QString tablename;
+
+        /**
+         * @brief condition of join
+         */
+        QString condition;
+
+        /**
+         * @brief type of join
+         */
+        QString type;
     };
 }
 

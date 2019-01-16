@@ -21,7 +21,14 @@ namespace QSqliteWrapper
          */
         Parameter(QString k, QVariant v);
 
+        /**
+         * @brief i.e : column name
+         */
         QString key;
+
+        /**
+         * @brief value of the column
+         */
         QVariant value;
     };
 }

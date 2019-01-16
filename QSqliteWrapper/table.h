@@ -165,15 +165,31 @@ namespace QSqliteWrapper
          */
         QList<QSqlRecord> exec(QString sql, QList<Parameter> parameters);
 
+        /**
+         * @brief Values bound when calling where()
+         */
         QMap<QString, QVariant> boundValues;
 
         template<class T>
+        /**
+         * @brief executes the select statement
+         * @return a list of T
+         */
         QList<T *> get();
 
         template<class T>
+        /**
+         * @brief getAll get all rows (SELECT * FROM tablename)
+         * @return  a list of T
+         */
         static QList<T *> getAll();
 
         template<class T>
+        /**
+         * @brief findById select one row (SELECT * FROM tablename WHERE pkname=id)
+         * @param id : to be compared with pkname
+         * @return a T
+         */
         static T *findById(QVariant id);
 
     private:
