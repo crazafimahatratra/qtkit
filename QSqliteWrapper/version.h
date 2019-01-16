@@ -13,6 +13,10 @@ class Version : public Table
 {
 public:
     Version();
+
+    /**
+     * @brief version the version stored in the table **version**
+     */
     int version;
     QString pkName()
     {
