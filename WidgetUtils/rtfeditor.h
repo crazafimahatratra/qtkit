@@ -13,14 +13,32 @@ namespace Ui {
 class RtfEditor;
 }
 
+/**
+ * @brief Rtf Editor widget
+ */
 class RtfEditor : public QWidget
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief Constructor
+     * @param parent : the parent widget
+     */
     explicit RtfEditor(QWidget *parent = 0);
+
+    /**
+     * @brief sets html content to the editor
+     * @param html : the html content
+     */
     void setHtml(QString html);
+
+    /**
+     * @brief retrieves html content
+     * @return the html content
+     */
     QString toHtml();
+
     ~RtfEditor();
 
 private slots:
