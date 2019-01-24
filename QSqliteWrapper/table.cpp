@@ -223,7 +223,6 @@ QString Table::whereClause()
 {
     if(_whereClause.isEmpty())
         return "";
-    qDebug() << _whereClause;
     return " WHERE " + _whereClause;
 }
 

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RtfEditor</class>
+ <widget class="QWidget" name="RtfEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>343</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="1" column="0">
+    <widget class="TextEditor" name="textEdit"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+  <action name="actionBold">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-bold.png</normaloff>:/editor/icons/edit-bold.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bold</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionItalic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-italic.png</normaloff>:/editor/icons/edit-italic.png</iconset>
+   </property>
+   <property name="text">
+    <string>Italic</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionUnderline">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-underline.png</normaloff>:/editor/icons/edit-underline.png</iconset>
+   </property>
+   <property name="text">
+    <string>Underline</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionHeading1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-heading-1.png</normaloff>:/editor/icons/edit-heading-1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Title 1</string>
+   </property>
+  </action>
+  <action name="actionHeading2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-heading-2.png</normaloff>:/editor/icons/edit-heading-2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Title 2</string>
+   </property>
+  </action>
+  <action name="actionHeading3">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-heading-3.png</normaloff>:/editor/icons/edit-heading-3.png</iconset>
+   </property>
+   <property name="text">
+    <string>Title 3</string>
+   </property>
+  </action>
+  <action name="actionParagraph">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-pilcrow.png</normaloff>:/editor/icons/edit-pilcrow.png</iconset>
+   </property>
+   <property name="text">
+    <string>Paragraph</string>
+   </property>
+  </action>
+  <action name="actionSizeUp">
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-size-up.png</normaloff>:/editor/icons/edit-size-up.png</iconset>
+   </property>
+   <property name="text">
+    <string>Size Up</string>
+   </property>
+  </action>
+  <action name="actionSizeDown">
+   <property name="icon">
+    <iconset resource="qtkiticons.qrc">
+     <normaloff>:/editor/icons/edit-size-down.png</normaloff>:/editor/icons/edit-size-down.png</iconset>
+   </property>
+   <property name="text">
+    <string>Size Down</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextEditor</class>
+   <extends>QTextEdit</extends>
+   <header location="global">qtkit/WidgetUtils/texteditor.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="qtkiticons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

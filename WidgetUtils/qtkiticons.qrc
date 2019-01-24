@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/editor">
+        <file>icons/edit-bold.png</file>
+        <file>icons/edit-color.png</file>
+        <file>icons/edit-italic.png</file>
+        <file>icons/edit-underline.png</file>
+        <file>icons/edit-heading.png</file>
+        <file>icons/edit-heading-1.png</file>
+        <file>icons/edit-heading-2.png</file>
+        <file>icons/edit-heading-3.png</file>
+        <file>icons/edit-heading-4.png</file>
+        <file>icons/edit-heading-5.png</file>
+        <file>icons/edit-heading-6.png</file>
+        <file>icons/edit-pilcrow.png</file>
+        <file>icons/highlighter-color.png</file>
+        <file>icons/paint-can-color.png</file>
+        <file>icons/edit-size-down.png</file>
+        <file>icons/edit-size-up.png</file>
+    </qresource>
+</RCC>
