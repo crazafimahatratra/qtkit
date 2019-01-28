@@ -87,6 +87,14 @@ namespace QSqliteWrapper
         Table *order(QString orderby);
 
         /**
+         * @brief generates limit clause
+         * @param inf : inferior limit
+         * @param count : rows number
+         * @return
+         */
+        Table *limit(int inf, int count = 0);
+
+        /**
          * @brief groupBy generates a group by clause
          * @param group : the group by clause
          * @return the Table object
@@ -186,6 +194,13 @@ namespace QSqliteWrapper
 
         template<class T>
         /**
+         * @brief get on row
+         * @return a T
+         */
+        static T *getRow();
+
+        template<class T>
+        /**
          * @brief findById select one row (SELECT * FROM tablename WHERE pkname=id)
          * @param id : to be compared with pkname
          * @return a T
@@ -208,6 +223,8 @@ namespace QSqliteWrapper
         QList<Parameter> m_updateValues;
         QList<Join> m_joins;
         QStringList m_orderClause;
+        int m_limitinf;
+        int m_limitcount;
         QStringList m_groupClause;
         queryMode mode;
         bool start = true;
@@ -218,12 +235,27 @@ namespace QSqliteWrapper
         QString whereClause();
         QString orderClause();
         QString groupClause();
+        QString limitClause();
         QString insertClause();
         QString updateClause();
         QString deleteClause();
 
         QString _whereClause = "";
     };
+
+    template<class T>
+    T *Table::getRow()
+    {
+        T model;
+        QList<QSqlRecord> records = model.exec();
+        for(int i = 0; i < records.length(); i++)
+        {
+            T *row = (new T);
+            row->fromRecord(records[i]);
+            return row;
+        }
+        return nullptr;
+    }
 
     template<class T>
     QList<T *> Table::get()

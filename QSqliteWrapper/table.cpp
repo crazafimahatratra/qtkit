@@ -7,6 +7,7 @@ Table::Table(QString name):
     m_name(name),
     mode(NONE)
 {
+    m_limitinf = m_limitcount = 0;
 }
 
 Table::~Table()
@@ -41,6 +42,13 @@ Table *Table::where(QString key, QVariant value, QString op)
 Table *Table::order(QString orderby)
 {
     m_orderClause.append(orderby);
+    return this;
+}
+
+Table *Table::limit(int inf, int count)
+{
+    m_limitinf = inf;
+    m_limitcount = count;
     return this;
 }
 
@@ -118,7 +126,8 @@ QString Table::sql()
                 + this->joinClause()
                 + this->whereClause()
                 + this->groupClause()
-                + this->orderClause();
+                + this->orderClause()
+                + this->limitClause();
 
     if(this->mode == INSERT)
         return this->insertClause();
@@ -238,6 +247,20 @@ QString Table::groupClause()
     if(m_groupClause.isEmpty())
         return "";
     return " GROUP BY " + m_groupClause.join(", ");
+}
+
+QString Table::limitClause()
+{
+    QString limit = "";
+    if(m_limitinf)
+    {
+        limit = " LIMIT " + m_limitinf;
+        if(m_limitcount)
+        {
+            limit += ", " + m_limitcount;
+        }
+    }
+    return limit;
 }
 
 QString Table::insertClause()
