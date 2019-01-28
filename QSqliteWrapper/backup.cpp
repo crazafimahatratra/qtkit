@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QDateTime>
 #include <QCoreApplication>
+#include <QDebug>
 #include "dbconnector.h"
 
 using namespace QSqliteWrapper;
@@ -17,12 +18,8 @@ void Backup::exportDb(QWidget *parent)
 {
     QString mesdocs = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     QString path = QFileDialog::getExistingDirectory(parent, "Choisissez la destination", mesdocs);
-
-    QString source = DbConnector::getDbName();
-    QFileInfo info(source);
-    QString name = info.baseName() + "_" + QDateTime::currentDateTime().toString("yyyyMMdd_HHmm") + ".db";
-    QString dest = QDir::cleanPath(path + QDir::separator() + name);
-    if(QFile::copy(source, dest))
+    QString dest = Backup::backup(path, QDateTime::currentDateTime().toString("yyyyMMdd_HHmm"));
+    if(!dest.isEmpty())
     {
         QMessageBox::information(parent, "Export", QString("Export effectué, sous le nom:\n%1").arg(dest));
     }
@@ -59,4 +56,16 @@ void Backup::importDb(QWidget* parent, int exitCodeReboot)
     QMessageBox::information(parent, "Base restaurée", QString("La base a été remplacée par le fichier\n%1\n"
                                                      "L'application va redémarrer.").arg(filename));
     QCoreApplication::instance()->exit(exitCodeReboot);
+}
+
+QString Backup::backup(QString path, QString suffix)
+{
+    QString source = DbConnector::getDbName();
+    QFileInfo info(source);
+    QString name = info.baseName() + "_" + suffix + ".db";
+    QString dest = QDir::cleanPath(path + QDir::separator() + name);
+    qDebug() << source << ">>" << dest;
+    if(QFile::copy(source, dest))
+        return dest;
+    return "";
 }

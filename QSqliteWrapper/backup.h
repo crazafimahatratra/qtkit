@@ -24,6 +24,8 @@ namespace QSqliteWrapper
          * @param exitCodeReboot a exit code for restarting the App
          */
         static void importDb(QWidget* parent, int exitCodeReboot);
+
+        static QString backup(QString path, QString suffix);
     };
 }
 #endif // BACKUP_H
