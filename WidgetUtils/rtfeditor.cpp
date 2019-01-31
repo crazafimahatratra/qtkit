@@ -154,7 +154,6 @@ void RtfEditor::on_actionUnderline_triggered(bool checked)
 
 void RtfEditor::on_textEdit_cursorPositionChanged()
 {
-    qDebug() << "cursor changed " << ui->textEdit->textCursor().position();
     QTextCharFormat format = ui->textEdit->textCursor().charFormat();
     int state = ui->textEdit->textCursor().block().userState();
     QFont font = format.font();
