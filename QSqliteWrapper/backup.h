@@ -4,7 +4,7 @@
 namespace QSqliteWrapper
 {
 /**
-* \brief The class Backup contains utilities to export and import SQlite database
+* \brief The class Backup contains utilities to export and import SQlite database.
 *
 */
     class Backup
@@ -13,18 +13,24 @@ namespace QSqliteWrapper
         Backup();
         /**
          * @brief exportDb opens a file dialog for choosing the destination directory, then
-         * saves a copy of the current database in the choosen directory
-         * @param parent the widget calling the method
+         * saves a copy of the current database in the choosen directory.
+         * @param parent the widget calling the method.
          */
         static void exportDb(QWidget *parent);
 
         /**
-         * @brief importDb opens a file dialog for choosing the file to be imported
-         * @param parent the calling widget
-         * @param exitCodeReboot a exit code for restarting the App
+         * @brief importDb opens a file dialog for choosing the file to be imported.
+         * @param parent the calling widget.
+         * @param exitCodeReboot a exit code for restarting the App.
          */
         static void importDb(QWidget* parent, int exitCodeReboot);
 
+        /**
+         * @brief performs a backup of the database.
+         * @param path : the destination path.
+         * @param suffix : suffix used for the filename.
+         * @return
+         */
         static QString backup(QString path, QString suffix);
     };
 }
