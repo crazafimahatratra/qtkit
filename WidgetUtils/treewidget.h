@@ -25,6 +25,12 @@ namespace WidgetUtils {
          * @param text : the filter to be applied to the widget
          */
         static void filterTreeItems(QTreeWidget *widget, QString text);
+
+        /**
+         * @brief hide top widgetItems with no child.
+         * @param widget : tree widget
+         */
+        static void hideEmptyTopTree(QTreeWidget *widget);
     };
 }
 

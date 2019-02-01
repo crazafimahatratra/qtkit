@@ -44,3 +44,12 @@ void TreeWidget::filterTreeItems(QTreeWidget *widget, QString text)
         _filterTreeItems(widget->topLevelItem(i), text);
     }
 }
+
+void TreeWidget::hideEmptyTopTree(QTreeWidget *widget)
+{
+    for(int i = 0; i < widget->topLevelItemCount(); i++)
+    {
+        QTreeWidgetItem *top = widget->topLevelItem(i);
+        top->setHidden(top->childCount() == 0);
+    }
+}
