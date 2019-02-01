@@ -29,9 +29,6 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="1" column="0">
-    <widget class="TextEditor" name="textEdit"/>
-   </item>
    <item row="0" column="0">
     <widget class="QFrame" name="frame">
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -49,6 +46,9 @@
       </property>
      </layout>
     </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="TextEditor" name="textEdit"/>
    </item>
   </layout>
   <action name="actionBold">

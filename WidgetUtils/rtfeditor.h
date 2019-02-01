@@ -8,6 +8,7 @@
 #include <QFontComboBox>
 #include <QFont>
 #include <QLabel>
+#include "patternhighlighter.h"
 
 namespace Ui {
 class RtfEditor;
@@ -38,6 +39,12 @@ public:
      * @return the html content
      */
     QString toHtml();
+
+    /**
+     * @brief highlight patterns in the content.
+     * @param pattern : the string to be highlighted
+     */
+    void highlightPattern(QString pattern);
 
     ~RtfEditor();
 

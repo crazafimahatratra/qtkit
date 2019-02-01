@@ -112,6 +112,11 @@ QString RtfEditor::toHtml()
     return ui->textEdit->toHtml();
 }
 
+void RtfEditor::highlightPattern(QString pattern)
+{
+    new PatternHighlighter(ui->textEdit->document(), pattern);
+}
+
 RtfEditor::~RtfEditor()
 {
     delete m_menuHeadings;
@@ -221,7 +226,6 @@ void RtfEditor::on_textEdit_cursorPositionChanged()
 
 void RtfEditor::setParagraphStyle(int h)
 {
-    qDebug() << "set paragraph style " << h;
     QList<QPoint> paragraphs = selectedParagraphs();
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.beginEditBlock();
